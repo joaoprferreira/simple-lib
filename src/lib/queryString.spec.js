@@ -1,4 +1,4 @@
-const { queryString } = require('./queryString');
+const { queryString, parse } = require('./queryString');
 
 describe('Object to query string', () => {
   it('should crate a valid query string when an object is provider', () => {
@@ -31,5 +31,24 @@ describe('Object to query string', () => {
     expect(() => {
       queryString(obj);
     }).toThrowError();
+  });
+});
+
+describe('query string to object', () => {
+  it('should crate a valid object when an query string is provider', () => {
+    const queryString = 'name=joao&cargo=SoftwareDevelopment';
+
+    expect(parse(queryString)).toEqual({
+      name: 'joao',
+      cargo: 'SoftwareDevelopment',
+    });
+  });
+
+  it('should crate a valid object when an single query string is provider', () => {
+    const queryString = 'name=joao';
+
+    expect(parse(queryString)).toEqual({
+      name: 'joao',
+    });
   });
 });
