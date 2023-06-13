@@ -52,3 +52,14 @@ describe('query string to object', () => {
     });
   });
 });
+
+describe('Array to query string', () => {
+  it('should crate a valid query string when is provider an array', () => {
+    const name = 'name=joao&cargo=Software,Development';
+
+    expect(parse(name)).toEqual({
+      name: 'joao',
+      cargo: ['Software', 'Development'],
+    });
+  });
+});
